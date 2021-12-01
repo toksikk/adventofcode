@@ -58,9 +58,6 @@ func secondSolution() {
 	b := make([]int, 3)
 	numbers := getNumbers()
 
-	a = numbers[0:3]
-	b = numbers[1:4]
-
 	for i := 0; i < len(numbers); i++ {
 		if i+4 <= len(numbers) {
 			a = numbers[i : i+3]
