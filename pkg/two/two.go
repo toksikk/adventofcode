@@ -28,40 +28,28 @@ func solve(commands []string, alt bool) int {
 		command := strings.Split(v, " ")
 		switch command[0] {
 		case "forward":
-			i, _ := strconv.Atoi(command[1])
-			forward(i, alt)
+			x, _ := strconv.Atoi(command[1])
+			horizontalPosition += x
+			if alt {
+				depth += aim * x
+			}
 		case "up":
-			i, _ := strconv.Atoi(command[1])
-			up(i, alt)
+			x, _ := strconv.Atoi(command[1])
+			if !alt {
+				depth -= x
+			} else {
+				aim -= x
+			}
 		case "down":
-			i, _ := strconv.Atoi(command[1])
-			down(i, alt)
+			x, _ := strconv.Atoi(command[1])
+			if !alt {
+				depth += x
+			} else {
+				aim += x
+			}
 		}
 	}
 	return horizontalPosition * depth
-}
-
-func up(d int, alt bool) {
-	if !alt {
-		depth -= d
-	} else {
-		aim -= d
-	}
-}
-
-func down(d int, alt bool) {
-	if !alt {
-		depth += d
-	} else {
-		aim += d
-	}
-}
-
-func forward(d int, alt bool) {
-	horizontalPosition += d
-	if alt {
-		depth += aim * d
-	}
 }
 
 func readInput() []string {
