@@ -9,46 +9,36 @@ import (
 	"strings"
 )
 
-var depth int = 0
-var horizontalPosition int = 0
-var aim int = 0
+var depth int
+var horizontalPosition int
+var aim int
 
 func Run() {
 	commands := readInput()
-	for _, v := range commands {
-		command := strings.Split(v, " ")
-		switch command[0] {
-		case "forward":
-			i, _ := strconv.Atoi(command[1])
-			forward(i, false)
-		case "up":
-			i, _ := strconv.Atoi(command[1])
-			up(i, false)
-		case "down":
-			i, _ := strconv.Atoi(command[1])
-			down(i, false)
-		}
-	}
-	fmt.Printf("1st final position: %d\n", horizontalPosition*depth)
+	fmt.Printf("1st final position: %d\n", solve(commands, false))
+	fmt.Printf("2nd final position: %d\n", solve(commands, true))
+}
 
+func solve(commands []string, alt bool) int {
 	depth = 0
 	horizontalPosition = 0
+	aim = 0
 
 	for _, v := range commands {
 		command := strings.Split(v, " ")
 		switch command[0] {
 		case "forward":
 			i, _ := strconv.Atoi(command[1])
-			forward(i, true)
+			forward(i, alt)
 		case "up":
 			i, _ := strconv.Atoi(command[1])
-			up(i, true)
+			up(i, alt)
 		case "down":
 			i, _ := strconv.Atoi(command[1])
-			down(i, true)
+			down(i, alt)
 		}
 	}
-	fmt.Printf("2nd final position: %d\n", horizontalPosition*depth)
+	return horizontalPosition * depth
 }
 
 func up(d int, alt bool) {
