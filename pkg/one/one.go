@@ -9,11 +9,11 @@ import (
 )
 
 func Run() {
-	firstSolution()
-	secondSolution()
+	fmt.Printf("1st solution: %d\n", solveFirst())
+	fmt.Printf("1nd solution: %d\n", solveSecond())
 }
 
-func getNumbers() []int {
+func readInput() []int {
 	file, err := os.Open("./pkg/one/input.txt")
 	if err != nil {
 		log.Fatal(err)
@@ -34,11 +34,11 @@ func getNumbers() []int {
 	return numbers
 }
 
-func firstSolution() {
+func solveFirst() int {
 	p := 0
 	i := 0
 
-	for k, v := range getNumbers() {
+	for k, v := range readInput() {
 		if k == 0 {
 			p = v
 			continue
@@ -49,14 +49,14 @@ func firstSolution() {
 		p = v
 	}
 
-	fmt.Println("First Solution: " + strconv.Itoa(i))
+	return i
 }
 
-func secondSolution() {
+func solveSecond() int {
 	increasedMeasurements := 0
 	a := make([]int, 3)
 	b := make([]int, 3)
-	numbers := getNumbers()
+	numbers := readInput()
 
 	for i := 0; i < len(numbers); i++ {
 		if i+4 <= len(numbers) {
@@ -76,5 +76,5 @@ func secondSolution() {
 		}
 	}
 
-	fmt.Println("Second Solution: " + strconv.Itoa(increasedMeasurements))
+	return increasedMeasurements
 }
