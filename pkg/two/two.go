@@ -9,10 +9,6 @@ import (
 	"strings"
 )
 
-var depth int
-var horizontalPosition int
-var aim int
-
 func Run() {
 	commands := readInput()
 	fmt.Printf("1st final position: %d\n", solve(commands, false))
@@ -20,9 +16,9 @@ func Run() {
 }
 
 func solve(commands []string, alt bool) int {
-	depth = 0
-	horizontalPosition = 0
-	aim = 0
+	depth := 0
+	horizontalPosition := 0
+	aim := 0
 
 	for _, v := range commands {
 		command := strings.Split(v, " ")
