@@ -21,23 +21,27 @@ func solve(commands []string, alt bool) int {
 	aim := 0
 
 	for _, v := range commands {
+
 		command := strings.Split(v, " ")
+
+		x, err := strconv.Atoi(command[1])
+		if err != nil {
+			log.Fatal(err)
+		}
+
 		switch command[0] {
 		case "forward":
-			x, _ := strconv.Atoi(command[1])
 			horizontalPosition += x
 			if alt {
 				depth += aim * x
 			}
 		case "up":
-			x, _ := strconv.Atoi(command[1])
 			if !alt {
 				depth -= x
 			} else {
 				aim -= x
 			}
 		case "down":
-			x, _ := strconv.Atoi(command[1])
 			if !alt {
 				depth += x
 			} else {
