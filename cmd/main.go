@@ -8,10 +8,11 @@ import (
 )
 
 func main() {
-	fmt.Println("Day 1")
+	fmt.Println("🎄 MERRY CHRISTMAS 🎄")
+	fmt.Println("Day 1️⃣")
 	one.Run()
-	fmt.Println("Day 2")
+	fmt.Println("Day 2️⃣")
 	two.Run()
-	fmt.Println("Day 3")
+	fmt.Println("Day 3️⃣")
 	three.Run()
 }
