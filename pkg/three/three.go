@@ -13,7 +13,7 @@ func Run() {
 	values := readInput()
 	heatmap := createHeatmap(values)
 	fmt.Printf("power: %d\n", calcPower(calcGamma(heatmap, len(values)), calcEpsilon(heatmap, len(values))))
-	fmt.Printf("oxygen * co2: %d\n", calcOxygen(values)*calcCO2(values))
+	fmt.Printf("oxygen * co2 (life support): %d\n", calcOxygen(values)*calcCO2(values))
 }
 
 func calcOxygen(values [][]int) int {
@@ -116,89 +116,13 @@ func calcPower(gamma []int, epsilon []int) int {
 	return convertToDecimal(gamma) * convertToDecimal(epsilon)
 }
 
-func convertToDecimal(gamma []int) int {
-	gammaDecimalValue := 0
-	for k, v := range gamma {
-		switch k {
-		case 0:
-			if v == 1 {
-				gammaDecimalValue += 2048
-			}
-		case 1:
-			if v == 1 {
-				gammaDecimalValue += 1024
-			}
-		case 2:
-			if v == 1 {
-				gammaDecimalValue += 512
-			}
-		case 3:
-			if v == 1 {
-				gammaDecimalValue += 256
-			}
-		case 4:
-			if v == 1 {
-				gammaDecimalValue += 128
-			}
-		case 5:
-			if v == 1 {
-				gammaDecimalValue += 64
-			}
-		case 6:
-			if v == 1 {
-				gammaDecimalValue += 32
-			}
-		case 7:
-			if v == 1 {
-				gammaDecimalValue += 16
-			}
-		case 8:
-			if v == 1 {
-				gammaDecimalValue += 8
-			}
-		case 9:
-			if v == 1 {
-				gammaDecimalValue += 4
-			}
-		case 10:
-			if v == 1 {
-				gammaDecimalValue += 2
-			}
-		case 11:
-			if v == 1 {
-				gammaDecimalValue++
-			}
-		}
+func convertToDecimal(i []int) int {
+	s := []string{}
+	for _, v := range i {
+		s = append(s, strconv.Itoa(v))
 	}
-	return gammaDecimalValue
-}
-func convertToDecimal5(gamma []int) int {
-	gammaDecimalValue := 0
-	for k, v := range gamma {
-		switch k {
-		case 0:
-			if v == 1 {
-				gammaDecimalValue += 16
-			}
-		case 1:
-			if v == 1 {
-				gammaDecimalValue += 8
-			}
-		case 2:
-			if v == 1 {
-				gammaDecimalValue += 4
-			}
-		case 3:
-			if v == 1 {
-				gammaDecimalValue += 2
-			}
-		case 4:
-			if v == 1 {
-				gammaDecimalValue++
-			}
-		}
-	}
-	return gammaDecimalValue
+	r, _ := strconv.ParseInt(strings.Join(s, ""), 2, 64)
+	return int(r)
 }
 
 func calcGamma(heatmap []int, lines int) []int {
