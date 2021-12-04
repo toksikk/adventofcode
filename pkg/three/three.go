@@ -20,10 +20,10 @@ func calcOxygen(values [][]int) int {
 	valueStore := make([][][]int, 0)
 	valueStore = append(valueStore, values)
 	for i := 0; i < len(values[0]); i++ {
-		frequencyMap := getMostCommonValues(valueStore[i])
+		commonValues := getCommonValues(valueStore[i], false)
 		newValues := make([][]int, 0)
 		for _, v := range valueStore[i] {
-			if v[i] == frequencyMap[i] {
+			if v[i] == commonValues[i] {
 				newValues = append(newValues, v)
 			}
 		}
@@ -42,10 +42,10 @@ func calcCO2(values [][]int) int {
 	valueStore := make([][][]int, 0)
 	valueStore = append(valueStore, values)
 	for i := 0; i < len(values[0]); i++ {
-		frequencyMap := getLeastCommonValues(valueStore[i])
+		commonValues := getCommonValues(valueStore[i], true)
 		newValues := make([][]int, 0)
 		for _, v := range valueStore[i] {
-			if v[i] == frequencyMap[i] {
+			if v[i] == commonValues[i] {
 				newValues = append(newValues, v)
 			}
 		}
@@ -60,7 +60,7 @@ func calcCO2(values [][]int) int {
 	return convertToDecimal(valueStore[len(valueStore)-1][0])
 }
 
-func getMostCommonValues(values [][]int) []int {
+func getCommonValues(values [][]int, least bool) []int {
 	ones := make([]int, len(values[0]))
 	zeros := make([]int, len(values[0]))
 	result := make([]int, len(values[0]))
@@ -75,38 +75,24 @@ func getMostCommonValues(values [][]int) []int {
 	}
 	for k := range result {
 		if ones[k] > zeros[k] {
-			result[k] = 1
+			if least {
+				result[k] = 0
+			} else {
+				result[k] = 1
+			}
 		} else {
-			result[k] = 0
-		}
-		if ones[k] == zeros[k] {
-			result[k] = 1
-		}
-	}
-	return result
-}
-
-func getLeastCommonValues(values [][]int) []int {
-	ones := make([]int, len(values[0]))
-	zeros := make([]int, len(values[0]))
-	result := make([]int, len(values[0]))
-	for _, v := range values {
-		for i, b := range v {
-			if b == 1 {
-				ones[i]++
-			} else if b == 0 {
-				zeros[i]++
+			if least {
+				result[k] = 1
+			} else {
+				result[k] = 0
 			}
 		}
-	}
-	for k := range result {
-		if ones[k] > zeros[k] {
-			result[k] = 0
-		} else {
-			result[k] = 1
-		}
 		if ones[k] == zeros[k] {
-			result[k] = 0
+			if least {
+				result[k] = 0
+			} else {
+				result[k] = 1
+			}
 		}
 	}
 	return result
