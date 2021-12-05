@@ -1,6 +1,7 @@
 package main
 
 import (
+	"adventofcode/pkg/four"
 	"adventofcode/pkg/one"
 	"adventofcode/pkg/three"
 	"adventofcode/pkg/two"
@@ -15,4 +16,6 @@ func main() {
 	two.Run()
 	fmt.Println("Day 3️⃣")
 	three.Run()
+	fmt.Println("Day 4️⃣")
+	four.Run()
 }
