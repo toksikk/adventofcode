@@ -12,8 +12,8 @@ import (
 func Run() {
 	draws, boards := readInput()
 
-	fmt.Printf("1st winning board: %d\n", calculateWinningBoard(findFirstWinningBoard(boards, createPlayboards(boards), draws)))
-	fmt.Printf("2nd winning board: %d\n", calculateWinningBoard(findLastWinningBoard(boards, createPlayboards(boards), draws)))
+	fmt.Printf("1st winning board 🥇: %d\n", calculateWinningBoard(findFirstWinningBoard(boards, createPlayboards(boards), draws)))
+	fmt.Printf("2nd winning board 🥈: %d\n", calculateWinningBoard(findLastWinningBoard(boards, createPlayboards(boards), draws)))
 }
 
 func calculateWinningBoard(board [][]int, playboard [][]bool, draw int) int {
