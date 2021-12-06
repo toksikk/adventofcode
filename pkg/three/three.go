@@ -12,8 +12,8 @@ import (
 func Run() {
 	values := readInput()
 	heatmap := createHeatmap(values)
-	fmt.Printf("power: %d\n", calcPower(calcGamma(heatmap, len(values)), calcEpsilon(heatmap, len(values))))
-	fmt.Printf("oxygen * co2 (life support): %d\n", calcOxygen(values)*calcCO2(values))
+	fmt.Printf("power 🔋: %d\n", calcPower(calcGamma(heatmap, len(values)), calcEpsilon(heatmap, len(values))))
+	fmt.Printf("life support 🌱 (oxygen * co2): %d\n", calcOxygen(values)*calcCO2(values))
 }
 
 func calcOxygen(values [][]int) int {
