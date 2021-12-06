@@ -11,8 +11,8 @@ import (
 
 func Run() {
 	commands := readInput()
-	fmt.Printf("1st final position: %d\n", solve(commands, false))
-	fmt.Printf("2nd final position: %d\n", solve(commands, true))
+	fmt.Printf("1st final position 🛰️: %d\n", solve(commands, false))
+	fmt.Printf("2nd final position 🛰️: %d\n", solve(commands, true))
 }
 
 func solve(commands []string, alt bool) int {
