@@ -9,8 +9,8 @@ import (
 )
 
 func Run() {
-	fmt.Printf("1st solution: %d\n", solveFirst())
-	fmt.Printf("2nd solution: %d\n", solveSecond())
+	fmt.Printf("1st solution 🔊: %d\n", solveFirst())
+	fmt.Printf("2nd solution 🔊: %d\n", solveSecond())
 }
 
 func readInput() []int {
