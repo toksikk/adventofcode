@@ -17,32 +17,18 @@ func Run() {
 }
 
 func calcOxygen(values [][]int) int {
-	valueStore := make([][][]int, 0)
-	valueStore = append(valueStore, values)
-	for i := 0; i < len(values[0]); i++ {
-		commonValues := getCommonValues(valueStore[i], false)
-		newValues := make([][]int, 0)
-		for _, v := range valueStore[i] {
-			if v[i] == commonValues[i] {
-				newValues = append(newValues, v)
-			}
-		}
-
-		valueStore = append(valueStore, newValues)
-
-		if len(newValues) == 1 {
-			break
-		}
-	}
-
-	return convertToDecimal(valueStore[len(valueStore)-1][0])
+	return calcOxygenOrCO2(values, false)
 }
 
 func calcCO2(values [][]int) int {
+	return calcOxygenOrCO2(values, true)
+}
+
+func calcOxygenOrCO2(values [][]int, getCO2 bool) int {
 	valueStore := make([][][]int, 0)
 	valueStore = append(valueStore, values)
 	for i := 0; i < len(values[0]); i++ {
-		commonValues := getCommonValues(valueStore[i], true)
+		commonValues := getCommonValues(valueStore[i], getCO2)
 		newValues := make([][]int, 0)
 		for _, v := range valueStore[i] {
 			if v[i] == commonValues[i] {
